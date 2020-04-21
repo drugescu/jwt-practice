@@ -26,17 +26,17 @@ Do the same for the dependencies:
 
 a) cmocka-1.1.15 - the latest version is not available in git, so whatever you find in git and in l8w8jwt will no longer compile in ubuntu!
 Instead download it from https://git.cryptomilk.org/projects/cmocka.git/snapshot/cmocka-1.1.5.tar.gz
-Un-tar and repeat the 'mkdir build && cd build && cmake .. && make'
-b) 'git clone' the mbed-tls repo, do the same procedures
+Un-tar and repeat the `mkdir build && cd build && cmake .. && make`
+b) `git clone` the mbed-tls repo, do the same procedures
 Shove the cmocka there by force since the variant it has will no longer build
 
-Build the 'libl8w8jwt.a'
+Build the `libl8w8jwt.a`
 
 Get the other header-only libraries and start using them.
 
-If using cmake for new applications, cmake .. && make and in your source code include only the headers:
-'''  #include "include/encode.h"
-     #include "include/decode.h" '''
+If using cmake for new applications, `cmake .. && make` and in your source code include only the headers:
+    #include "include/encode.h"
+    #include "include/decode.h"
 as required.
 
 
@@ -48,18 +48,18 @@ a) Generate key pairs in ubuntu using
 >> ssh-keygen
 
 Note: To avoid the prompt, you can use this to automate the command
-''' ssh-keygen -b 4096 -t rsa -m PEM -f ./temp_ssh_key -q -N "" -y
-    openssl rsa -in temp_ssh_key -pubout -outform PEM -out temp_ssh_key.pub'''
+    ssh-keygen -b 4096 -t rsa -m PEM -f ./temp_ssh_key -q -N "" -y
+    openssl rsa -in temp_ssh_key -pubout -outform PEM -out temp_ssh_key.pub
 
 Output:
 >> Generating public/private rsa key pair.
->> Enter file in which to save the key ('/your_home/.ssh/id_rsa'):
+>> Enter file in which to save the key (`/your_home/.ssh/id_rsa`):
 
 b) Create Token
-'make && ./l8test_encode temp_ssh_key ../jwt_test_token_file'
+`make && ./l8test_encode temp_ssh_key ../jwt_test_token_file`
 
 c) Use token and validate
-'make && ./l8test_decode temp_ssh_key.pub ../jwt_test_token_file'
+`make && ./l8test_decode temp_ssh_key.pub ../jwt_test_token_file`
 
 Encoder should create the token with some hard-coded values.
 
