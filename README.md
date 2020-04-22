@@ -2,13 +2,21 @@
 
 
 a) `git clone` or untar/unzip
+
 b) create a build directory inside with `mkdir build`
+
 c) change to the build directory `cd build`
+
 d) run cmake `cmake ..`
+
 e) run `make` to build the apps (encoder and decoder)
+
 f) run `make install` to install the libraries in `/usr/local/lib`
+
   In the future, this step will also add the app binaries to `/usr/bin`
+  
   Note: run with sudo to allow changes, if not root! It's a system dir!
+  
 g) run `test.sh` to test it all `chmod +x ./test.sh && ./test.sh`
 
 
