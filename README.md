@@ -3,7 +3,7 @@
 
 a) `git clone --recurse-submodules` or untar/unzip
 
-b) `git submodule update --init --recursive` to get subomdules l8w8jwt-related if you did not use the full command at step a).
+b) `git submodule update --init --recursive` to get submodules l8w8jwt-related if you did not use the full command at step a).
 
 c) run the build script `./build.sh`
 
