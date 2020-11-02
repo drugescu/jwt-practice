@@ -38,11 +38,11 @@ int main(int argc, char **argv)
     params.verification_key_length = strlen(buff_pub);
 
     // This will generate validation result +1 if different
-    params.validate_iss = "Black Mesa";
+    params.validate_iss = "Issuer of Token";
     params.validate_iss_length = strlen(params.validate_iss);
 
     // This will generate validation result +2 if different
-    params.validate_sub = "Gordon Freeman";
+    params.validate_sub = "Subject of Token";
     params.validate_sub_length = strlen(params.validate_sub);
 
     params.validate_exp = true;
@@ -59,9 +59,7 @@ int main(int argc, char **argv)
     int r = l8w8jwt_decode(&params, &validation_result, &out_claims, &claims_length);
     
     // Decode claims portion
-    //l8w8jwt_write_claims(chillbuff* stringbuilder, struct l8w8jwt_claim* claims, const size_t claims_count);
-
-    printf("\nl8w8jwt_decode_ps512 function returned %s (code %d).\n\nValidation result: \n%d\n", r == L8W8JWT_SUCCESS ? "successfully" : "", r, validation_result);
+    printf("\nl8w8jwt_decode_rs256 function returned %s (code %d).\n\nValidation result: \n%d\n", r == L8W8JWT_SUCCESS ? "successfully" : "", r, validation_result);
     
     // Primary Token validation
     if (validation_result) {
@@ -96,7 +94,7 @@ int main(int argc, char **argv)
       printf("         Claim type = '%s'\n", claim_types[out_claims[i].type]);
     }
     
-    printf("\nExpected payload was:\n  Issuer: %s\n  Subject: %s\n", params.validate_iss, params.validate_sub);
+    printf("\nExpected payload was:\n  Issuer : %s\n  Subject: %s\n", params.validate_iss, params.validate_sub);
     
     // Custom Token validation
     // Use claims here and validate them

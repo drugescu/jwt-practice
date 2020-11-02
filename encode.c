@@ -31,8 +31,8 @@ int main(int argc, char **argv)
         {
             .key = "kid",
             .key_length = 3,
-            .value = "some-key-id-here-012345",
-            .value_length = strlen("some-key-id-here-012345"),
+            .value = "guuid-ley-001",
+            .value_length = strlen("guuid-ley-001"),
             .type = L8W8JWT_CLAIM_TYPE_STRING
         }
     };
@@ -43,34 +43,34 @@ int main(int argc, char **argv)
         {
             .key = "ctx",
             .key_length = 3,
-            .value = "Unforseen Consequences",
-            .value_length = strlen("Unforseen Consequences"),
+            .value = "Title of Token",
+            .value_length = strlen("Title of Token"),
             .type = L8W8JWT_CLAIM_TYPE_STRING
         },
         {
             .key = "age",
             .key_length = 3,
-            .value = "27",
-            .value_length = strlen("27"),
+            .value = "32",
+            .value_length = strlen("32"),
             .type = L8W8JWT_CLAIM_TYPE_INTEGER
         },
         {
-            .key = "size",
-            .key_length = strlen("size"),
-            .value = "1.85",
-            .value_length = strlen("1.85"),
+            .key = "height",
+            .key_length = strlen("height"),
+            .value = "1.77",
+            .value_length = strlen("1.77"),
             .type = L8W8JWT_CLAIM_TYPE_NUMBER
         },
         {
-            .key = "alive",
-            .key_length = strlen("alive"),
+            .key = "adult",
+            .key_length = strlen("adult"),
             .value = "true",
             .value_length = strlen("true"),
             .type = L8W8JWT_CLAIM_TYPE_BOOLEAN
         },
         {
-            .key = "nulltest",
-            .key_length = strlen("nulltest"),
+            .key = "nullkey",
+            .key_length = strlen("nullkey"),
             .value = "null",
             .value_length = strlen("null"),
             .type = L8W8JWT_CLAIM_TYPE_NULL
@@ -80,19 +80,19 @@ int main(int argc, char **argv)
     struct l8w8jwt_encoding_params params;
     l8w8jwt_encoding_params_init(&params);
 
-    params.alg = L8W8JWT_ALG_RS256;//L8W8JWT_ALG_PS512;
+    params.alg = L8W8JWT_ALG_RS256;
 
     // sub: The subject of the token
-    params.sub = "Gordon Freeman";
-    params.sub_length = strlen("Gordon Freeman");
+    params.sub = "Subject of Token";
+    params.sub_length = strlen("Subject of Token");
 
     // iss: The issuer of the token
-    params.iss = "Black Mesa";
-    params.iss_length = strlen("Black Mesa");
+    params.iss = "Issuer of Token";
+    params.iss_length = strlen("Issuer of Token");
 
     // aud: The audience of the token
-    params.aud = "Administrator";
-    params.aud_length = strlen("Administrator");
+    params.aud = "Audience of Token";
+    params.aud_length = strlen("Audience of Token");
 
     // exp: This will probably be the registered claim most often used. This will define the expiration in NumericDate value. The expiration MUST be after the current date/time.
     params.iat = time(NULL);
@@ -104,8 +104,7 @@ int main(int argc, char **argv)
     params.additional_payload_claims = payload_claims;
     params.additional_payload_claims_count = sizeof(payload_claims) / sizeof(struct l8w8jwt_claim);
 
-    //params.secret_key = (unsigned char*)RSA_PRIVATE_KEY;
-    //params.secret_key_length = strlen(RSA_PRIVATE_KEY);
+    // The RSA key used to encode
     params.secret_key = (unsigned char*) buff_priv;
     params.secret_key_length = strlen(buff_priv);
 
@@ -122,7 +121,8 @@ int main(int argc, char **argv)
       fclose (jwt_file);
     }
     else {
-      //printf("Error %d is %s", r, errs[r]);
+      // printf("Error %d is %s", r, errs[r]);
+      // To implement
     }
 
     free(jwt);
