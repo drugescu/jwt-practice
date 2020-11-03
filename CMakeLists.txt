@@ -9,9 +9,22 @@ execute_process (
     COMMAND bash -c "grep -xF 'set_property(TARGET \${PROJECT_NAME} PROPERTY POSITION_INDEPENDENT_CODE ON)' ${CMAKE_CURRENT_LIST_DIR}/l8w8jwt/CMakeLists.txt || echo 'set_property(TARGET \${PROJECT_NAME} PROPERTY POSITION_INDEPENDENT_CODE ON)' >> ${CMAKE_CURRENT_LIST_DIR}/l8w8jwt/CMakeLists.txt"
 )
 
+# Build static library
+execute_process (
+    COMMAND bash -c "sed '/cmake -DBUILD_SHARED_LIBS/','/On/s/On/Off/' ${CMAKE_CURRENT_LIST_DIR}/l8w8jwt/build.sh > ${CMAKE_CURRENT_LIST_DIR}/l8w8jwt/build_static.sh"
+)
+
+# Own the file 
+execute_process (
+    COMMAND bash -c "chmod +x ${CMAKE_CURRENT_LIST_DIR}/l8w8jwt/build_static.sh"
+)
+execute_process (
+    COMMAND bash -c "chown $USER ${CMAKE_CURRENT_LIST_DIR}/l8w8jwt/build_static.sh"
+)
+
 # First run cmake in submodule
 execute_process (
-    COMMAND bash -c "${CMAKE_CURRENT_LIST_DIR}/l8w8jwt/build.sh"    
+    COMMAND bash -c "${CMAKE_CURRENT_LIST_DIR}/l8w8jwt/build_static.sh"    
 )
 
 add_subdirectory(l8w8jwt)
